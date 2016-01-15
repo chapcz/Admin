@@ -37,6 +37,7 @@ class Extension extends Nette\DI\CompilerExtension
 				'pageName' => 'Admin',
 				'pageMsg' => 'Authentication',
 				'usernameIcon' => 'envelope',
+				'usernameType' => 'email',
 				'passwordIcon' => 'lock',
 			],
 		];
@@ -65,7 +66,7 @@ class Extension extends Nette\DI\CompilerExtension
 			]);
 
 		$builder->addDefinition($this->prefix('loginFormFactory'))
-			->setClass('Kollarovic\Admin\LoginFormFactory');
+			->setClass('Kollarovic\Admin\LoginFormFactory',['username' => $config['login']['usernameType']]);
 
 		$builder->addDefinition($this->prefix('loginControlFactory'))
 			->setImplement('Kollarovic\Admin\ILoginControlFactory')
